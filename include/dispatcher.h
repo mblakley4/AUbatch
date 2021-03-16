@@ -1,1 +1,0 @@
-void *dispatcher(void *ptr);
