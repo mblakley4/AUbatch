@@ -138,7 +138,7 @@ int cmd_list()
   printf("Name \tCPU_Time \tPri \tArrival_time \tProgress\n");
   for (i = buf_tail; i < buf_head; i++)
   {
-    printf("job%i \t%i \t\t%s \t%s \t\t%s\n", cmd_buffer[i].job_id, cmd_buffer[i].cpu_time, cmd_buffer[i].pri, cmd_buffer[i].display_time, cmd_buffer[i].status);
+    printf("job%i \t%.0f \t\t%s \t%s \t%s\n", cmd_buffer[i].job_id, cmd_buffer[i].cpu_time, cmd_buffer[i].pri, cmd_buffer[i].display_time, cmd_buffer[i].status);
   }
   return 0;
 }

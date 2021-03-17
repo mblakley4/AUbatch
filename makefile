@@ -7,14 +7,14 @@ mSRCS = ./src/aubatch.c \
 				./src/scheduler/scheduler.c \
 				./src/dispatcher/dispatcher.c \
 				./src/cmd_line_tools/cmd_line_parser.c \
-				./src/performance/performance.c
+				./src/performance/perf_info.c
 
 
 TEST = @echo "hi"
 
 REBUILDABLES = $(OBJS)
 
-
+#use for linux OS (centos)
 all: $(SRCS)
 	@clear 
 	$(CC) -pthread -o $(OBJS) $(SRCS)
@@ -25,10 +25,9 @@ clean:
 	rm -f $(REBUILDABLES)
 	@echo clean complete
 
+#use in macOS
 mac: $(mSRCS)
 	@clear
 	$(CC) -pthread -o $(OBJS) $(mSRCS)
 	@echo build complete
 	
-
-#	gcc -pthread -o aubatch ./src/cmd_line_tools/cmd_line_parser.c ./src/dispatcher/dispatcher.c ./src/performance/performance.c ./src/scheduler/scheduler.c ./src/aubatch.c

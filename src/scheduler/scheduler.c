@@ -216,10 +216,6 @@ int *scheduler(char **args)
   {
     /* create new_job and it's pointer */
     struct Job new_job;
-    //struct Job *new_job_ptr;
-
-    /* assign new_job to it's pointer */
-    //new_job_ptr = &new_job;
 
     /* create pointer to cmd_buffer */
     struct Job **cmd_buffer_ptr = &cmd_buffer;
@@ -227,7 +223,6 @@ int *scheduler(char **args)
     /* Construct new job */
     clean_pri[strcspn(clean_pri, "\n")] = 0;
     time(&current_time);
-    //printf("time: %s\n", ctime(&current_time));
     time_now = localtime(&current_time);
     strftime(time_string, sizeof(time_string), "%H:%M:%S", time_now);
 
@@ -236,7 +231,8 @@ int *scheduler(char **args)
     strcpy(new_job.exec_time, args[2]);
     strcpy(new_job.pri, clean_pri);
     strcpy(new_job.display_time, time_string);
-    new_job.arrival_time = clock();
+    new_job.arrival_time = time(NULL);
+    new_job.cpu_time = 0;
     strcpy(new_job.status, "Waiting");
 
     (*cmd_buffer_ptr)[buf_head] = new_job;
@@ -247,10 +243,6 @@ int *scheduler(char **args)
     id_counter++;
     count++;
     buf_head++;
-
-    // printf("buffer check: %s\n", cmd_buffer[buf_head].filename);
-    // printf("buffer check: %s\n", cmd_buffer[buf_head].exec_time);
-    //printf("buffer check: %s\n", cmd_buffer[buf_head].pri);
   }
 
   // check policy and update cmd_buffer
