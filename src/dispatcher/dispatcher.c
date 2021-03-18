@@ -32,7 +32,7 @@ extern struct Job *cmd_buffer;
 void *dispatcher(void *ptr)
 {
   pid_t pid;
-  time_t start, finish;
+  time_t arrival, start, finish;
 
   while (1)
   {
@@ -48,8 +48,6 @@ void *dispatcher(void *ptr)
 
     /* Update Starting Time */
     start = time(NULL);
-    printf("start: %lu\n", start);
-    cmd_buffer[buf_tail].start_time = start;
 
     /* Create Fork */
     pid = fork();
@@ -65,20 +63,11 @@ void *dispatcher(void *ptr)
 
       /* Log Finish Time */
       finish = time(NULL);
-      cmd_buffer[buf_tail].finish_time = finish;
 
-      /* Calc CPU_Time */
-      printf("cpu_time: %ld\n", finish - start);
-      cmd_buffer[buf_tail].cpu_time = finish - start;
+      arrival = cmd_buffer[buf_tail].arrival_time;
 
-      /* Calc Turnaround Time */
-      printf("ta_time: %ld\n", finish - cmd_buffer[buf_tail].arrival_time);
-      cmd_buffer[buf_tail].turn_around_time = finish - cmd_buffer[buf_tail].arrival_time;
-
-      /* Calc Waiting Time */
-      cmd_buffer[buf_tail].wait_time = cmd_buffer[buf_tail].turn_around_time - cmd_buffer[buf_tail].cpu_time;
-
-      perf_info(&cmd_buffer[buf_tail]);
+      /* Send basic job metrics to perf_info for calculations */
+      perf_info(arrival, start, finish);
 
       buf_tail++;
       count--;
@@ -89,6 +78,7 @@ void *dispatcher(void *ptr)
     else
     { /* Child Process */
       /* Run the command scheduled in the queue */
+      printf("here");
       execv(cmd_buffer[buf_tail].filename, NULL);
       return 0;
     }

@@ -203,13 +203,15 @@ int priority_scheduling()
   return 0;
 };
 
-int *scheduler(char **args)
+void *scheduler(char **args)
 {
   char *cmd = args[0];
   char *clean_pri = args[3];
   char time_string[9];
   time_t current_time;
   struct tm *time_now;
+
+  printf("cmd: %s\n", cmd);
 
   /* if cmd is run, create new job */
   if (strcmp(cmd, "run") == 0)

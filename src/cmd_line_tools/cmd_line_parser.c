@@ -28,7 +28,7 @@
 #define EINVAL 1
 #define E2BIG 2
 
-#define MAXMENUARGS 4
+#define MAXMENUARGS 7
 // #define CMD_BUF_SIZE 1000
 
 //enum policies {FCFS, SJF, priority};
@@ -43,6 +43,7 @@ extern struct Job *cmd_buffer;
 extern u_int policy;
 extern char *policy_string;
 extern int user_wait_time;
+extern struct Metrics accumulator;
 
 void menu_execute(char *line, int isargs);
 int cmd_run(int nargs, char **args);
@@ -143,14 +144,27 @@ int cmd_list()
   return 0;
 }
 
+int test(int nargs, char **args)
+{
+  if (nargs != 7)
+  {
+    printf("Usage: test <benchmark> <policy> <num_of_jobs> <priority_levels> <min_CPU_time> <max_CPU_time>\n");
+    return EINVAL;
+  }
+  auto_eval(args);
+  return 0;
+}
+
 /*
  * The quit command.
  */
 int cmd_quit(int nargs, char **args)
 {
+  printf("Total number of jobs submitted: %i\n", accumulator.num_of_jobs);
+  printf("Average turnaround time: \t%.2f\n", accumulator.avg_turnaround);
+  printf("Average waiting time: \t%.2f\n", accumulator.avg_wait);
+  printf("Throughput: \t%.4f\n", accumulator.throughput);
 
-  // make call to a performance file
-  printf("Please display performance information before exiting AUbatch!\n");
   exit(0);
 }
 
@@ -218,6 +232,7 @@ static struct
     {"sjf\n", change_policy},
     {"priority\n", change_policy},
     {"list\n", cmd_list},
+    {"test", test},
     {NULL, NULL}};
 
 /*
