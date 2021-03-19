@@ -211,8 +211,6 @@ void *scheduler(char **args)
   time_t current_time;
   struct tm *time_now;
 
-  printf("cmd: %s\n", cmd);
-
   /* if cmd is run, create new job */
   if (strcmp(cmd, "run") == 0)
   {

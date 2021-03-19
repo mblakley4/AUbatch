@@ -78,7 +78,7 @@ void *dispatcher(void *ptr)
     else
     { /* Child Process */
       /* Run the command scheduled in the queue */
-      printf("here");
+      printf("here %s\n", cmd_buffer[buf_tail].filename);
       execv(cmd_buffer[buf_tail].filename, NULL);
       return 0;
     }

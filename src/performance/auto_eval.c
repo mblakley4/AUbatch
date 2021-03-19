@@ -41,7 +41,6 @@ void *auto_eval(char **args)
   char *min_cpu = args[5];
   char *max_cpu = args[6];
   char *sched_cmd[4];
-  char *sched_cmd_ptr;
 
   struct dirent *executable;
   DIR *dir_ptr;
@@ -90,12 +89,12 @@ void *auto_eval(char **args)
       sprintf(cpu_str, "%d", cpu_int);
 
       /* Build command to pass to scheduler */
-      // snprintf(run_buf, sizeof(run_buf), "run %s %s %s\n", name, cpu_str, pri_str);
-      // printf("%s\n", run_buf);
+      snprintf(run_buf, sizeof(run_buf), "../benchmarks/%s\n", name);
+      //printf("%s\n", run_buf\n);
 
       //*sched_cmd_ptr = &sched_cmd;
       sched_cmd[0] = "run";
-      sched_cmd[1] = name;
+      sched_cmd[1] = run_buf;
       sched_cmd[2] = cpu_str;
       sched_cmd[3] = pri_str;
 
