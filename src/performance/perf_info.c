@@ -24,8 +24,6 @@ void *perf_info(time_t arrival, time_t start, time_t finish)
   int jobs;
   float cpu_avg, cpu_time, turnaround_avg, turnaround, wait_avg, response_avg, throughput;
 
-  // add to average:  [(avg * jobs-1) + new_val] / jobs
-
   /* Increment job count and assign to local jobs variable */
   accumulator.num_of_jobs++;
   jobs = accumulator.num_of_jobs;

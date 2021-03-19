@@ -90,7 +90,6 @@ void *auto_eval(char **args)
 
       /* Build command to pass to scheduler */
       snprintf(run_buf, sizeof(run_buf), "../benchmarks/%s\n", name);
-      //printf("%s\n", run_buf\n);
 
       //*sched_cmd_ptr = &sched_cmd;
       sched_cmd[0] = "run";
@@ -99,7 +98,6 @@ void *auto_eval(char **args)
       sched_cmd[3] = pri_str;
 
       /* Send the job to the scheduler */
-      //sched_cmd = run_buf;
       scheduler(sched_cmd);
 
       sleep(1);

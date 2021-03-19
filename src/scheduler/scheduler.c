@@ -245,7 +245,7 @@ void *scheduler(char **args)
     buf_head++;
   }
 
-  // check policy and update cmd_buffer
+  /* check policy and update cmd_buffer */
   if (policy == 0)
   {
     fcfs_scheduling();
