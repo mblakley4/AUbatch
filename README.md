@@ -9,10 +9,10 @@ Authored by Michael Blakley, with a large portion of the thread synchronization 
 - POSIX Threads Programming
 - Performance Metrics
 
-### Compile for Linux
+### Compile the project
 
 From project root: `$make all`
 
-### Compile for MacOS
+### Run the project
 
-From project root: `$make mac`
+./aubatch

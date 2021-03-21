@@ -41,10 +41,11 @@ void *auto_eval(char **args)
   char *min_cpu = args[5];
   char *max_cpu = args[6];
   char *sched_cmd[4];
+  char run_buf[50];
 
   struct dirent *executable;
   DIR *dir_ptr;
-  char pri_str[10], cpu_str[10], run_buf[50];
+  char pri_str[10], cpu_str[10];
   int pri_int, cpu_int;
 
   /* set the scheduling algorithm */
@@ -80,6 +81,8 @@ void *auto_eval(char **args)
         continue;
       }
 
+      srand(time(0));
+
       /* Generate a Priority */
       pri_int = random_num(1, atoi(pri));
       sprintf(pri_str, "%d", pri_int);
@@ -89,7 +92,7 @@ void *auto_eval(char **args)
       sprintf(cpu_str, "%d", cpu_int);
 
       /* Build command to pass to scheduler */
-      snprintf(run_buf, sizeof(run_buf), "../benchmarks/%s\n", name);
+      snprintf(run_buf, sizeof(run_buf), "./benchmarks/%s%c", name, '\0');
 
       //*sched_cmd_ptr = &sched_cmd;
       sched_cmd[0] = "run";
@@ -103,11 +106,6 @@ void *auto_eval(char **args)
       sleep(1);
     }
   }
-
-  printf("Total number of jobs submitted: %i\n", accumulator.num_of_jobs);
-  printf("Average turnaround time: \t%.2f\n", accumulator.avg_turnaround);
-  printf("Average waiting time: \t%.2f\n", accumulator.avg_wait);
-  printf("Throughput: \t%.4f\n", accumulator.throughput);
 
   closedir(dir_ptr);
 

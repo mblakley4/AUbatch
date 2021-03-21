@@ -1,0 +1,122 @@
+Script started on Sun Mar 21 07:58:35 2021
+bash: /Users/michaelblakley/.bashrc: is a directory
+[?1034hzek ► make all
+[H[2Jgcc -pthread -o aubatch ./src/aubatch.c ./src/scheduler/scheduler.c ./src/dispatcher/dispatcher.c ./src/cmd_line_tools/cmd_line_parser.c ./src/performance/perf_info.c ./src/performance/auto_eval.c
+build complete
+zek ► ./aubatch 
+Welcome to Michael Blakley's batch job scheduler Version 1.0.
+Type 'help' to find more about AUbatch commands.
+> help
+
+AUbatch help menu
+    run <job> <time> <priority>:  
+				submit a job named <job>, 
+				execution time is <time>, 
+				priority is <pri>
+    list: display the job status        
+    fcfs: change the scheduling policy to FCFS
+    sjf: change the scheduling policy to SJF
+    priority: change the scheduling policy to priority
+    test ./benchmarks <policy> <num_of_jobs> <priority_levels> 
+	<min_CPU_time> <max_CPU_time>
+    quit: exit AUbatch                  
+    help: Print help menu               
+
+> fcfs
+The policy is already set to FCFS.
+> sjf
+Scheduling policy is switched to: SJF. All of the 0 waiting jobs have been rescheduled.
+> 
+
+: Command not found
+> sf jf
+The policy is already set to SJF.
+> pro iority
+Scheduling policy is switched to: priority. All of the 0 waiting jobs have been rescheduled.
+> fcfs
+Scheduling policy is switched to: FCFS. All of the 0 waiting jobs have been rescheduled.
+> foo
+foo
+: Command not found
+> . run ./job    ./jobs/job3 10 1
+Job ../jobs/job3 was submitted.
+Expected waiting time: 0 seconds
+Scheduling Policy: FCFS
+> list
+Total number of jobs in the queue: 1
+Scheduling Policy: FCFS
+Name 	CPU_Time 	Pri 	Arrival_time 	Progress
+job1 	0 		1 	07:59:33 	Running
+> run.  ../jobs/job3 30 3
+Job ../jobs/job3 was submitted.
+Expected waiting time: 0 seconds
+Scheduling Policy: FCFS
+> list
+Total number of jobs in the queue: 2
+Scheduling Policy: FCFS
+Name 	CPU_Time 	Pri 	Arrival_time 	Progress
+job1 	0 		1 	07:59:33 	Running
+job2 	0 		3 	07:59:47 	Waiting
+> run ../jobs/jb ob4 20 2
+Job ../jobs/job4 was submitted.
+Expected waiting time: 30 seconds
+Scheduling Policy: FCFS
+> list
+Total number of jobs in the queue: 3
+Scheduling Policy: FCFS
+Name 	CPU_Time 	Pri 	Arrival_time 	Progress
+job1 	0 		1 	07:59:33 	Running
+job2 	0 		3 	07:59:47 	Waiting
+job3 	0 		2 	08:00:04 	Waiting
+> priority
+Scheduling policy is switched to: priority. All of the 3 waiting jobs have been rescheduled.
+> list
+Total number of jobs in the queue: 3
+Scheduling Policy: priority
+Name 	CPU_Time 	Pri 	Arrival_time 	Progress
+job1 	0 		1 	07:59:33 	Running
+job3 	0 		2 	08:00:04 	Waiting
+job2 	0 		3 	07:59:47 	Waiting
+> sjf
+Scheduling policy is switched to: SJF. All of the 3 waiting jobs have been rescheduled.
+> list
+Total number of jobs in the queue: 3
+Scheduling Policy: SJF
+Name 	CPU_Time 	Pri 	Arrival_time 	Progress
+job1 	0 		1 	07:59:33 	Running
+job3 	0 		2 	08:00:04 	Waiting
+job2 	0 		3 	07:59:47 	Waiting
+> fcfs
+Scheduling policy is switched to: FCFS. All of the 3 waiting jobs have been rescheduled.
+> list
+Total number of jobs in the queue: 3
+Scheduling Policy: FCFS
+Name 	CPU_Time 	Pri 	Arrival_time 	Progress
+job1 	0 		1 	07:59:33 	Running
+job2 	0 		3 	07:59:47 	Waiting
+job3 	0 		2 	08:00:04 	Waiting
+> list
+Total number of jobs in the queue: 3
+Scheduling Policy: FCFS
+Name 	CPU_Time 	Pri 	Arrival_time 	Progress
+job1 	0 		1 	07:59:33 	Running
+job2 	0 		3 	07:59:47 	Waiting
+job3 	0 		2 	08:00:04 	Waiting
+> list
+Total number of jobs in the queue: 2
+Scheduling Policy: FCFS
+Name 	CPU_Time 	Pri 	Arrival_time 	Progress
+job2 	0 		3 	07:59:47 	Running
+job3 	0 		2 	08:00:04 	Waiting
+> list
+Total number of jobs in the queue: 0
+Scheduling Policy: FCFS
+> quit
+Total number of jobs submitted: 3 seconds
+Average turnaround time: 	185.00 seconds
+Average waiting time: 	105.00 seconds
+Throughput: 	0.0054 No./second
+zek ► exit
+exit
+
+Script done on Sun Mar 21 08:04:04 2021

@@ -1,0 +1,55 @@
+Script started on Sun Mar 21 09:55:01 2021
+bash: /Users/michaelblakley/.bashrc: is a directory
+[?1034hzek ► make all
+[H[2Jgcc -pthread -o aubatch ./src/aubatch.c ./src/scheduler/scheduler.c ./src/dispatcher/dispatcher.c ./src/cmd_line_tools/cmd_line_parser.c ./src/performance/perf_info.c ./src/performance/auto_eval.c
+build complete
+zek ► ./aubatch 
+Welcome to Michael Blakley's batch job scheduler Version 1.0.
+Type 'help' to find more about AUbatch commands.
+> help
+
+AUbatch help menu
+    run <job> <time> <priority>:  
+				submit a job named <job>, 
+				execution time is <time>, 
+				priority is <pri>
+    list: display the job status        
+    fcfs: change the scheduling policy to FCFS
+    sjf: change the scheduling policy to SJF
+    priority: change the scheduling policy to priority
+    test ./benchmarks <policy> <num_of_jobs> <priority_levels> 
+	<min_CPU_time> <max_CPU_time>
+    quit: exit AUbatch                  
+    help: Print help menu               
+
+> test ./benchmarks sjf 4 5 10 90
+Job ./benchmarks/bench2 was submitted.
+Job ./benchmarks/bench3 was submitted.
+Job ./benchmarks/bench4 was submitted.
+Job ./benchmarks/bench1 was submitted.
+> list
+Total number of jobs in the queue: 4
+Scheduling Policy: SJF
+Name 	CPU_Time 	Pri 	Arrival_time 	Progress
+job2 	0 		4 	09:55:36 	Running
+job3 	0 		1 	09:55:37 	Waiting
+job1 	0 		3 	09:55:35 	Waiting
+job4 	0 		5 	09:55:38 	Waiting
+> list
+Total number of jobs in the queue: 2
+Scheduling Policy: SJF
+Name 	CPU_Time 	Pri 	Arrival_time 	Progress
+job1 	0 		3 	09:55:35 	Running
+job4 	0 		5 	09:55:38 	Waiting
+> list
+Total number of jobs in the queue: 0
+Scheduling Policy: SJF
+> quit
+Total number of jobs submitted: 4 seconds
+Average turnaround time: 	193.75 seconds
+Average waiting time: 	130.00 seconds
+Throughput: 	0.0052 No./second
+zek ► exit
+exit
+
+Script done on Sun Mar 21 10:01:26 2021

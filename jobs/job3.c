@@ -1,7 +1,5 @@
 #include <unistd.h>
 
-/* Quick testing job */
-
 int main()
 {
   int i, j;
@@ -12,6 +10,8 @@ int main()
     for (j = 0; j < 100; j++)
       a[i] += a[j];
   }
+
+  sleep(120);
 
   return 0;
 }

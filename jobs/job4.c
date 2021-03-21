@@ -1,3 +1,5 @@
+#include <unistd.h>
+
 int main()
 {
 
@@ -5,10 +7,12 @@ int main()
 
   sum = 0;
 
-  for (i = 0; i < 500; i++)
+  for (i = 0; i < 5000; i++)
   {
     sum = sum + 2 ^ i;
   }
+
+  sleep(45);
 
   return 0;
 }

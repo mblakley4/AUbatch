@@ -1,3 +1,5 @@
+#include <unistd.h>
+
 int main()
 {
 
@@ -9,6 +11,8 @@ int main()
   {
     sum += sum;
   }
+
+  sleep(60);
 
   return 0;
 }

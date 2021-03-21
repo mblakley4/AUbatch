@@ -13,6 +13,12 @@
  * How to Run?
  * ./aubatch
  * 
+ * Run a sample job in AUbatch:
+ * > run ./jobs/job1 20 4
+ * 
+ * Run a sample benchmark in AUbatch:
+ * > test ./benchmarks fcfs 4 6 30 90
+ * 
 */
 
 #include <stdio.h>

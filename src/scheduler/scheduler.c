@@ -34,7 +34,7 @@ void calc_user_wait_time(int index)
   /* initialize user_wait_time */
   user_wait_time = 0;
 
-  while (index > buf_tail)
+  while (index > 0)
   {
     if (strcmp(cmd_buffer[index - 1].status, "Waiting") == 0)
     {
@@ -48,14 +48,14 @@ void calc_user_wait_time(int index)
 int fcfs_scheduling()
 {
   int val1, val2, i, j, submitted_job_id;
-  if (count == 1)
+  if (count <= 1)
   {
     user_wait_time = 0;
     return 0;
   }
 
   /* store the submitted job id */
-  submitted_job_id = cmd_buffer[buf_head].job_id;
+  submitted_job_id = cmd_buffer[buf_head - 1].job_id;
 
   // insertion sort quick solution - for a queue capped at 1000 should still sort ~max 1ms
   // should still improve this to O(logN) sorting
@@ -101,14 +101,14 @@ int sjf_scheduling()
 {
   int val1, val2, i, j, submitted_job_id;
 
-  if (count == 1)
+  if (count <= 1)
   {
     user_wait_time = 0;
     return 0;
   }
 
   /* store the submitted job id */
-  submitted_job_id = cmd_buffer[buf_head].job_id;
+  submitted_job_id = cmd_buffer[buf_head - 1].job_id;
 
   // insertion sort quick solution - for a queue capped at 1000 should still sort ~max 1ms
   // should still improve this to O(logN) sorting
@@ -154,14 +154,14 @@ int priority_scheduling()
 {
   int val1, val2, i, j, submitted_job_id;
 
-  if (count == 1)
+  if (count <= 1)
   {
     user_wait_time = 0;
     return 0;
   }
 
   /* store the submitted job id */
-  submitted_job_id = cmd_buffer[buf_head].job_id;
+  submitted_job_id = cmd_buffer[buf_head - 1].job_id;
   // insertion sort quick solution - for a queue capped at 1000 should still sort ~max 1ms
   // should still improve this to O(logN) sorting
   for (i = buf_tail; i < buf_head; i++)

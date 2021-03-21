@@ -136,6 +136,12 @@ int cmd_list()
   int i;
   printf("Total number of jobs in the queue: %i\n", count);
   printf("Scheduling Policy: %s\n", policy_string);
+
+  if (count == 0)
+  {
+    return 0;
+  }
+
   printf("Name \tCPU_Time \tPri \tArrival_time \tProgress\n");
   for (i = buf_tail; i < buf_head; i++)
   {
@@ -160,10 +166,10 @@ int test(int nargs, char **args)
  */
 int cmd_quit(int nargs, char **args)
 {
-  printf("Total number of jobs submitted: %i\n", accumulator.num_of_jobs);
-  printf("Average turnaround time: \t%.2f\n", accumulator.avg_turnaround);
-  printf("Average waiting time: \t%.2f\n", accumulator.avg_wait);
-  printf("Throughput: \t%.4f\n", accumulator.throughput);
+  printf("Total number of jobs submitted: %i seconds\n", accumulator.num_of_jobs);
+  printf("Average turnaround time: \t%.2f seconds\n", accumulator.avg_turnaround);
+  printf("Average waiting time: \t%.2f seconds\n", accumulator.avg_wait);
+  printf("Throughput: \t%.4f No./second\n", accumulator.throughput);
 
   exit(0);
 }
@@ -198,7 +204,7 @@ static const char *helpmenu[] = {
     "fcfs: change the scheduling policy to FCFS",
     "sjf: change the scheduling policy to SJF",
     "priority: change the scheduling policy to priority",
-    "test <benchmark> <policy> <num_of_jobs> <priority_levels> \n\t<min_CPU_time> <max_CPU_time>",
+    "test ./benchmarks <policy> <num_of_jobs> <priority_levels> \n\t<min_CPU_time> <max_CPU_time>",
     "quit: exit AUbatch",
     "help: Print help menu",
     NULL};
@@ -223,9 +229,7 @@ static struct
     /* commands: single command must end with \n */
     {"help\n", cmd_helpmenu},
     {"?\n", cmd_helpmenu},
-    {"h\n", cmd_helpmenu},
     {"run", cmd_run},
-    {"r", cmd_run},
     {"quit\n", cmd_quit},
     {"q\n", cmd_quit},
     {"fcfs\n", change_policy},
